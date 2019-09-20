@@ -1,0 +1,34 @@
+---
+title: "p8105_hw1_ml4420"
+author: Mengjia Lyu
+date:   2019-09-13
+output: github_document
+---
+
+## Data Science Homework 1
+
+
+```{r problem 1}
+library(formattable)
+library(tidyverse) #loading libraries
+
+first_df = tibble(   #first data frame
+  random_sample = rnorm(n = 8),
+  vec_logical   = random_sample > 0,
+  vec_char      = c("this", "is", "a", "character", "vector", "of", "length", "eight"),
+  vec_factor    = factor(c("small", "medium", "large", "small", "medium", "large", "small", "medium")),
+ )
+```
+
+Now let us try to take the mean of each variable in the data frame.
+
+```{r problem 1 mean}
+
+  mean(pull(first_df, random_sample)) #take the mean
+  mean(pull(first_df, vec_logical))
+  mean(pull(first_df, vec_char))
+  mean(pull(first_df, vec_factor))
+
+```
+As can be seen from the results, taking the mean of the random sample or the logical vector works, but taking the mean of the character vector or the factor vector doesn't work.
+
