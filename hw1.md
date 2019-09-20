@@ -37,13 +37,17 @@ Now let us try to take the mean of each variable in the data
   mean(pull(first_df, random_sample)) #mean of random sample
 ```
 
-    ## [1] -0.08440639
+
 
 ``` r
   mean(pull(first_df, vec_logical)) #mean of logical variable
 ```
 
+<<<<<<< HEAD
     ## [1] 0.375
+=======
+    ## [1] 0.625
+>>>>>>> Do conversions and multiplications
 
 ``` r
   mean(pull(first_df, vec_char))  #mean of char variable
@@ -102,4 +106,22 @@ missing values were returned.
 
 However, logical values are always binary which means they can always be
 represented by 0s and 1s. Therefore, its mean can be calculated
-numerically without conversions.
+
+numerically without
+conversions.
+
+``` r
+ result_1 = as.numeric(pull(first_df, vec_logical))   #convert to numeric
+ product_1 = pull(first_df, random_sample) * result_1
+ 
+ result_2 = as.factor(pull(first_df, vec_logical))    #convert to factor
+ product_2 = pull(first_df, random_sample) * result_2
+```
+
+    ## Warning in Ops.factor(pull(first_df, random_sample), result_2): '*' not
+    ## meaningful for factors
+
+``` r
+ result_3 = as.numeric(as.factor(pull(first_df, vec_logical)))  #convert to numeric
+ product_3 = pull(first_df, random_sample) * result_3
+```

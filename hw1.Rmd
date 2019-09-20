@@ -55,3 +55,21 @@ Since a character vector cannot be converted to numeric type, taking its mean do
 Since the factor variable was not converted before taking its mean, missing values were returned. 
 
 However, logical values are always binary which means they can always be represented by 0s and 1s. Therefore, its mean can be calculated numerically without conversions.
+
+
+```{r problem_1 conversion and multiplication}
+
+ result_1 = as.numeric(pull(first_df, vec_logical))   #convert to numeric
+ product_1 = pull(first_df, random_sample) * result_1
+ 
+ result_2 = as.factor(pull(first_df, vec_logical))    #convert to factor
+ product_2 = pull(first_df, random_sample) * result_2
+ 
+ result_3 = as.numeric(as.factor(pull(first_df, vec_logical)))  #convert to numeric
+ product_3 = pull(first_df, random_sample) * result_3
+
+
+```
+
+
+
