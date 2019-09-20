@@ -73,3 +73,36 @@ However, logical values are always binary which means they can always be represe
 
 
 
+## Problem 2
+
+```{r problem 2}
+second_df = tibble(   #second data frame
+  x = rnorm(500),
+  y = rnorm(500),
+  vec_logical = x + y > 1,
+  vec_numeric = as.numeric(vec_logical),
+  vec_factor  = as.factor(vec_logical)
+)
+```
+
+**Here is a short description of my vectors.** 
+The dataset has **`r nrow(second_df)`** rows and **`r ncol(second_df)`** columns. 
+The mean, median, and standard deviation of x is **`r mean(pull(second_df, x))`**, **`r median(pull(second_df, x))`** and **`r sd(pull(second_df, x))`** respectively.
+The proportion of cases for which x + y > 1 is **`r percent(sum(pull(second_df, vec_logical))/500)`**
+
+```{r scatterplot}
+ggplot(second_df, aes(x = x, y = y, color = vec_logical)) + geom_point()
+ggsave("scatterplot.pdf")  #export the first scatterplot to my project directory
+ggplot(second_df, aes(x = x, y = y, color = vec_numeric)) + geom_point()
+ggplot(second_df, aes(x = x, y = y, color = vec_factor)) + geom_point()
+```
+ 
+ 
+ **Comments:**
+ When using the logical vector to color the plot, the color scale is either true or false. There are only two colors in the plot.
+ When using the numeric vector to color the plot, the color scale is more continuous and there are a spectrum of colors in the plot.
+ When using the factor vector to color the plot, the color scale is also either true or false. There are only two colors in the plot.
+ 
+
+ 
+

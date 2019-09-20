@@ -39,15 +39,18 @@ Now let us try to take the mean of each variable in the data
 
 
 
+    ## [1] 0.3022756
+
+
 ``` r
   mean(pull(first_df, vec_logical)) #mean of logical variable
 ```
 
-<<<<<<< HEAD
+
     ## [1] 0.375
-=======
+
     ## [1] 0.625
->>>>>>> Do conversions and multiplications
+
 
 ``` r
   mean(pull(first_df, vec_char))  #mean of char variable
@@ -107,8 +110,8 @@ missing values were returned.
 However, logical values are always binary which means they can always be
 represented by 0s and 1s. Therefore, its mean can be calculated
 
-numerically without
-conversions.
+
+
 
 ``` r
  result_1 = as.numeric(pull(first_df, vec_logical))   #convert to numeric
@@ -125,3 +128,52 @@ conversions.
  result_3 = as.numeric(as.factor(pull(first_df, vec_logical)))  #convert to numeric
  product_3 = pull(first_df, random_sample) * result_3
 ```
+
+
+## Problem 2
+
+``` r
+second_df = tibble(   #second data frame
+  x = rnorm(500),
+  y = rnorm(500),
+  vec_logical = x + y > 1,
+  vec_numeric = as.numeric(vec_logical),
+  vec_factor  = as.factor(vec_logical)
+)
+```
+
+**Here is a short description of my vectors.** The dataset has **500**
+rows and **5** columns. The mean, median, and standard deviation of x is
+**0.0075249**, **0.0616921** and **0.9793989** respectively. The
+proportion of cases for which x + y \> 1 is
+**22.80%**
+
+``` r
+ggplot(second_df, aes(x = x, y = y, color = vec_logical)) + geom_point()
+```
+
+``` r
+ggsave("scatterplot.pdf")  #export the first scatterplot to my project directory
+```
+
+    ## Saving 7 x 5 in image
+
+``` r
+ggplot(second_df, aes(x = x, y = y, color = vec_numeric)) + geom_point()
+```
+
+
+
+``` r
+ggplot(second_df, aes(x = x, y = y, color = vec_factor)) + geom_point()
+```
+
+
+
+**Comments:** When using the logical vector to color the plot, the color
+scale is either true or false. There are only two colors in the plot.
+When using the numeric vector to color the plot, the color scale is more
+continuous and there are a spectrum of colors in the plot. When using
+the factor vector to color the plot, the color scale is also either true
+or false. There are only two colors in the plot.
+
